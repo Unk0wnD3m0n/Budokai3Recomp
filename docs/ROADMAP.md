@@ -31,5 +31,6 @@
 ### V0.3 — Primera compilación local (16 noviembre 2026)
 
 - ✅ Una función recompilada (`FUN_00103018_0x103018.cpp`) pasó MSVC C++20 `/Zs` y compilación real `/c` a objeto COFF x64 de **110,706 bytes**.
-- ⏳ Pendiente compilar otras funciones, enlazar con runtime, validar destinos de control de flujo y corregir límites de rangos sintéticos experimentalmente recortados.
+- ✅ 12 funciones recompiladas superaron compilaciones MSVC C++20 x64: 3 individuales + prueba automática de 9/9 objetos no vacíos.
+- ⏳ Pendiente validar rangos sintéticos recortados (script de auditoría Ghidra en solo lectura), compilar generador de registro, enlazar con runtime y comprobar ejecución.
 - ⚠️ La generación sin errores en prueba A/B todavía no prueba arranque ni integridad del juego.
