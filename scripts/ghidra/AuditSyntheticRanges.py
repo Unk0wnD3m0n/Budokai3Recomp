@@ -14,7 +14,7 @@ RANGES = [
     ("entry_0042c020", 0x0042c020, 0x0042d000, 0x0042c028),
 ]
 
-def summarize(iterator, limit):
+def summarize(iterator, limit, kind="code"):
     count = 0
     examples = []
     while iterator.hasNext():
@@ -23,7 +23,8 @@ def summarize(iterator, limit):
         item = iterator.next()
         count += 1
         if len(examples) < limit:
-            examples.append("0x%08X" % item.getMinAddress().getOffset())
+            address = item.getEntryPoint() if kind == "function" else item.getMinAddress()
+            examples.append("0x%08X" % address.getOffset())
     return count, examples
 
 if currentProgram is None:
@@ -47,7 +48,7 @@ else:
         omitted_data, data_samples = summarize(
             listing.getDefinedData(tail, True), 5)
         omitted_functions, fn_samples = summarize(
-            listing.getFunctions(tail, True), 5)
+            listing.getFunctions(tail, True), 5, "function")
         total_outside += omitted_instructions
         print("  Instrucciones dentro de los primeros 8 bytes: %d" % head_instructions)
         print("  Instrucciones definidas DESPUES de 8 bytes: %d" % omitted_instructions)
