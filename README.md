@@ -24,6 +24,16 @@ py -3 -m unittest discover -s tests -v
 
 Identifica SYSTEM.CNF, BOOT2, ejecutable ELF MIPS, número de serie y hash SHA-256 del ELF. El informe se guarda solo en el PC del usuario. **Que una ISO se reconozca no significa que vaya a recompilarse.**
 
+## Segunda prueba — V0.2a: mapa de memoria ELF32
+
+Descarga la versión más reciente del repositorio y desde PowerShell ejecuta:
+
+```powershell
+python .\scripts\inspect_elf_layout.py ".\DragonBall Z - Budokai 3 - Collector's Edition (Europe) (En,Ja,Fr,De,Es,It).iso" --report reporte-v02-local.json
+```
+
+Si tu ISO está en otra carpeta, utiliza su ruta. Esto genera únicamente metadatos de segmentos, secciones y permisos de memoria. No recompila ni ejecuta el juego. Detalles en [docs/V02_ANALYSIS.md](docs/V02_ANALYSIS.md).
+
 ## Fases
 
 Consulta [docs/ROADMAP.md](docs/ROADMAP.md): inspección de ISO → análisis del ELF → recompilación C++ → runtime → gráficos → controles/audio → primer combate → posible port jugable.
