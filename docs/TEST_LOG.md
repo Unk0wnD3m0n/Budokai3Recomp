@@ -127,3 +127,9 @@ User ran read-only Python check of local TOML `[general].output`; output:
 Ghidra Listing screenshot at `0x0042C998` shows a **string data item**, symbol `s_amMc.c_0042c998`, directive `ds "amMc.c"`, preceded near `0x0042C980` by `"MC: sceMcInit error\\n"`, followed by untyped zero bytes from `0x0042C9A0`. These are not displayed as R5900 instructions.
 
 PS2Recomp had reported many `unhandled_instruction` diagnostics inside a generated function named `sub_0042C998`; likely the recompiler treats non-code data as code in at least this region. **Do not yet attribute it specifically to the Ghidra CSV**; `sub_...` names can arise from heuristics too. Verify whether the CSV contains a start at `0x0042C998` or a covering range before modifying maps. Keep ELF/TOML/CSV and generated C++ local.
+
+## 2026-11-16 — V0.3 / CSV overlap root-cause triage
+
+User screenshot of read-only PowerShell confirms **one CSV record covers** `0x0042C998`: `entry_0042c020`, `0x0042C020` through `0x0042D000` (end-exclusive), `Size=4064`. `0x0042C998` itself not a CSV start. Generated file `sub_0042C998_0x42c998.cpp` exists (one match). Ghidra Listing at that address shows `ds "amMc.c"` — text data.
+
+This confirms a too-broad pseudo-entry overlaps non-code; it does **not prove** which heuristic produced `sub_0042C998`. Inspect output and map fallback processing. No data, ELF or generated C++ was committed.
