@@ -6,7 +6,7 @@
 |---|---|---|---|
 | V0.1 | Inspección ISO9660 / BOOT2 / ELF | Tests sintéticos pasan; ISO propia reconocida localmente | PASS — ISO original reconocida localmente en Windows (2026-11-16) |
 | V0.2 | Mapa de funciones / Ghidra | Funciones, segmentos y dependencias documentadas | V0.2a PASS (2 LOAD, 1 ejecutable); V0.2b PASS (13 tests; ELF local extraído y hash cotejado); Ghidra 12.2 Auto Analyze PASS (544078 instrucciones, 7328 funciones candidatas); V0.2d PASS (CSV 45170 registros / 1831275 B; TOML 2579 B con [general]); evaluar límites de mapa antes de recompilar |
-| V0.3 | Primera recompilación PS2Recomp | Generar C++ y compilar prueba con CMake/MSVC | Recompilador ejecutado hasta fin; varios `unhandled_instruction`; inspección de salida y compilación del C++ pendientes |
+| V0.3 | Primera recompilación PS2Recomp | Generar C++ y compilar prueba con CMake/MSVC | 5,896 archivos `.cpp` y `register_functions.cpp` verificados en salida local; varios `unhandled_instruction` pendientes de análisis; compilación/runtime aún no probados |
 | V0.4 | Runtime/arranque | Inicializar código de PS2 y registrar faltantes | Pendiente |
 | V0.5 | GS/VU/DMA y gráficos | Primer fotograma reproducible en PC | Pendiente |
 | V0.6 | Audio, mando y menús | Navegar menús y probar guardado | Pendiente |
