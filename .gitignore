@@ -32,3 +32,7 @@ __pycache__/
 .vscode/
 .idea/
 reporte-v02-local.json
+
+# Ghidra/PS2Recomp exportados localmente: metadatos derivados y rutas privadas
+/budokai3-functions.csv
+/budokai3-functions.toml
