@@ -192,3 +192,7 @@ New PowerShell screenshot shows **45,171 CPP files**, **zero empty CPP files**, 
 ## 2026-11-16 — V0.3 / control-flow warnings examined
 
 User screenshot provided 10 sample `control-flow` warnings. They report unresolved `JR/JALR` sites with promotion of many fallback entries to support indirect execution. Example: `FUN_00103018` unresolved at `0x1030c0`, `0x1030d4`, promoted 135 fallback entries. Other sample functions report 29, 30, 51, 82, 92, 113, 115, 118 fallback entries. Frequency table shows warnings broadly distributed across functions (e.g., `caseD_0`: 4; multiple functions 2), unlike three pseudo-entry ranges explaining unsupported instructions. Need inspect representative cases and quantify fallback cost; zero translation errors cannot establish correct indirect control-flow. No generated proprietary code uploaded.
+
+## 2026-11-16 — V0.3 / representative indirect JALR confirmed in Ghidra
+
+User screenshot at 0x001030C0 and 0x001030D4 confirms real memory-based indirect function calls: `lw v1,0(v0); jalr v1` and `lw v0,0(s0); jalr v0`, each with a nonempty delay slot (`_addu a0,s2,a0`, `_addu a0,s2,s3`). These two sites are legitimate runtime-dependent calls, not evidence of bad CSV boundaries. Upstream `control_flow_emitter.cpp` explicitly dispatches such calls using `runtime->dispatchGuestBranch` with `GuestBranchKind::IndirectCall`. This supports moving on to a limited C++ syntax smoke test, while keeping runtime dispatch validation as an outstanding blocker. No copyrighted code uploaded.
