@@ -208,3 +208,7 @@ User screenshot: x64 Native Tools Command Prompt successfully ran `cl` for `FUN_
 ## 2026-11-16 — V0.3 / first generated C++ syntax-only test PASS
 
 User reports `CODIGO_DE_SALIDA=0` after running corrected x64 MSVC C++20 `cl /Zs` on isolated experiment-generated `FUN_00103018_0x103018.cpp`. This establishes single translation-unit syntactic/semantic compilation checks passed with required includes. **No object or executable has been produced** by this syntax-only check; full build/link/runtime and game behavior remain unverified. Next isolated single-file `cl /c /Od /Fo` object emission test under private `output` folder, without game-derived artifacts in git.
+
+## 2026-11-16 — V0.3 / first generated x64 object code compiled: PASS
+
+User supplied x64 Native Tools Command Prompt screenshot: command `cl /nologo /std:c++20 /EHsc /arch:AVX2 /Od /c` on private generated `FUN_00103018_0x103018.cpp` succeeded, `CODIGO_DE_SALIDA=0`. The local `obj-test/FUN_00103018_0x103018.obj` exists, size **110,706 bytes**, dated 2026-11-16 21:46 (local time). This is machine-code object emission for one generated translation unit, **not** linking or validation of game behavior. Continue small-sample compile then investigate linking/runtime. The experimental 8-byte range caps still risk discarding valid code; preserve original game inputs and never commit proprietary output.
