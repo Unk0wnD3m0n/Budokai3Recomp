@@ -133,3 +133,9 @@ PS2Recomp had reported many `unhandled_instruction` diagnostics inside a generat
 User screenshot of read-only PowerShell confirms **one CSV record covers** `0x0042C998`: `entry_0042c020`, `0x0042C020` through `0x0042D000` (end-exclusive), `Size=4064`. `0x0042C998` itself not a CSV start. Generated file `sub_0042C998_0x42c998.cpp` exists (one match). Ghidra Listing at that address shows `ds "amMc.c"` — text data.
 
 This confirms a too-broad pseudo-entry overlaps non-code; it does **not prove** which heuristic produced `sub_0042C998`. Inspect output and map fallback processing. No data, ELF or generated C++ was committed.
+
+## 2026-11-16 — V0.3 — C++ sospechoso inspeccionado (lectura local)
+
+Captura PowerShell del usuario confirmó `sub_0042C998_0x42c998.cpp` (104812 bytes) en carpeta privada de salida. Cabecera generada: `// Function: sub_0042C998` y `// Address: 0x42c998 - 0x42d000`. Includes de runtime (`ps2_runtime.h`, `ps2_recompiled_functions.h`, etc.). En Ghidra la dirección `0x42c998` sigue siendo `ds "amMc.c"` (cadena de texto), no comienzo de una función legítima identificada. 
+
+Se inspeccionó el parser upstream `ran-j/PS2Recomp`: combina datos de CSV con funciones halladas heurísticamente y asigna límites de funciones, de modo que **todavía no está demostrado el origen exacto de `sub_0042C998`**. La entrada CSV `entry_0042c020` abarca hasta `0x42d000`, incluyendo texto, por lo que hay evidencia de alcance excesivo. Pendiente inspeccionar `0x42c020` en Ghidra y aislar si la región es datos/código mixtos. Ningún archivo del juego ni código generado se publicó.
