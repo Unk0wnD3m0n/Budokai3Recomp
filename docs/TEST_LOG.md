@@ -108,3 +108,16 @@ Según captura de consola x64 Native Tools:
 - Se requiere distinguir instrucciones no soportadas de posibles **datos mal clasificados como código / entradas sintéticas** del mapa CSV de Ghidra.
 
 **Estado:** herramienta ejecutó la etapa de traducción hasta su mensaje de fin; recompilación funcional y calidad del C++ **pendientes de validación**. El mensaje de éxito no cancela los diagnósticos.
+
+## 2026-11-16 — V0.3 / generated C++ output verified — PASS (artifact existence)
+
+User ran read-only Python check of local TOML `[general].output`; output:
+
+- Configured output is **outside the project repository**, directly under the local user's home in an `output` directory. Initial search in project folder was therefore mistaken.
+- `EXISTE: True`.
+- `ARCHIVOS CPP: 5896`.
+- `REGISTER: True` for `register_functions.cpp`.
+- This **verifies C++ files were generated**; it does not verify compilation, correctness, or runtime.
+- Remaining blocker: many `unhandled_instruction` messages in prior run, with suspected misclassification of ELF bytes/labels; inspect without executing or distributing commercial code.
+
+**Next:** read-only verify generated headers and file summary; keep generated C++ private and never commit it to GitHub.
