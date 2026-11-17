@@ -35,3 +35,12 @@
 - ⏳ Pendiente validar rangos sintéticos recortados (script de auditoría Ghidra en solo lectura), compilar generador de registro, enlazar con runtime y comprobar ejecución.
 - ⚠️ La generación sin errores en prueba A/B todavía no prueba arranque ni integridad del juego.
 - ✅ Auditoría Java Ghidra: 0 instrucciones reconocidas después de los recortes experimentales en los 3 rangos; 7.267 unidades de datos definidas en los tramos restantes; aún sin verificación completa de referencias/control de flujo.
+
+
+### Referencia central: arquitectura del port BT3-Recomp
+
+**Objetivo:** Budokai 3 europeo SLES-53346, con archivos privados aportados por el propietario de la copia. Se deja de iterar únicamente con auditorías y mini compilaciones. Usaremos el pipeline de referencia de [z3xox/BT3-Recomp](https://github.com/z3xox/BT3-Recomp): versión modificada de PS2Recomp + runtime, mapeo de código/recursos específico del juego, parches acotados, un script coordinador y empaquetado nativo Windows. Referencia paralela de arquitectura de interfaz/sonido/gráficos: [z3xox/Tenkaichi3Decomp](https://github.com/z3xox/Tenkaichi3Decomp), que es un **port de decompilación diferente**.
+
+**Restricciones:** no mezclar funciones ni offsets de BT3 (SLUS-21678) con Budokai 3 (SLES-53346); no copiar ni publicar archivos comerciales, ELF, ISO o C++ recompilado; cumplir licencias de los componentes reutilizados (BT3-Recomp GPL-3.0). **Compilar un EXE con el runtime genérico no significa tener juego jugable**.
+
+**Ruta compacta:** (1) comparar organización y pipeline `games/bt3/setup.py` y su runtime; (2) detectar en los archivos de Budokai 3 si hay módulos/overlays equivalentes que deban recompilarse, sin asumir que sean `DBZP.BIN`; (3) crear un pipeline único `games/budokai3/setup.py` para extracción, generación y build, con un primer EXE de prueba; (4) resolver errores reales de compilación y arranque, luego gráficos, entrada y audio. El script previo `scripts/v03_build_full.py` es únicamente un experimento sobre el PS2Recomp original, no el pipeline de referencia.
