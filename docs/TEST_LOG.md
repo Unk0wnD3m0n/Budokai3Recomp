@@ -151,3 +151,13 @@ User read-only TOML and filesystem check: `ELF EXISTE: True`, `CSV EXISTE: False
 ## 2026-11-16 — V0.3 / re-run with corrected CSV path: MAP LOADED
 
 User supplied two matching log lines from the second private recompilation: at line **530**, `[info] ghidra-map - Loaded 45170 functions from Ghidra map`; at line **8180**, `Recompilation completed successfully`. This verifies the fixed TOML config now provides Ghidra map input and that PS2Recomp reached completion. Does **not** validate generated C++ correctness or runtime. New output count and ghost function status not yet received. Next: count .cpp files and unhandled_instruction messages in this fresh run, and check presence of sub_0042C998.
+
+## 2026-11-16 — V0.3 / corrected Ghidra-map rerun: output verified
+
+User screenshot of local PowerShell checks confirms log line 530: 45170 functions loaded from Ghidra map and line 8180: Recompilation completed successfully.
+
+- Fresh isolated output contains 45,171 CPP files, including register_functions.cpp.
+- No generated filenames containing 0042C998 in the fresh output.
+- Zero matches of unhandled_instruction in the fresh log.
+
+Assessment: the former missing CSV path strongly explains the false-code generation; this symptom is no longer present. Other severity diagnostics and compilation remain unchecked. No proprietary artifacts committed.
