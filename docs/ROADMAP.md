@@ -27,3 +27,9 @@
 - Los offsets y direcciones de Greatest Hits NTSC no tienen por qué coincidir con Collector's Edition PAL.
 - El ELF de venta puede carecer de símbolos; la ingeniería inversa puede ser extensa.
 - GPL y AGPL de referencias externas requieren una revisión de licencia antes de copiar código.
+
+### V0.3 — Primera compilación local (16 noviembre 2026)
+
+- ✅ Una función recompilada (`FUN_00103018_0x103018.cpp`) pasó MSVC C++20 `/Zs` y compilación real `/c` a objeto COFF x64 de **110,706 bytes**.
+- ⏳ Pendiente compilar otras funciones, enlazar con runtime, validar destinos de control de flujo y corregir límites de rangos sintéticos experimentalmente recortados.
+- ⚠️ La generación sin errores en prueba A/B todavía no prueba arranque ni integridad del juego.
