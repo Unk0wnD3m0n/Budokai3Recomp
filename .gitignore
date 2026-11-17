@@ -1,0 +1,33 @@
+# Archivos comerciales y copias locales (no publicar)
+*.iso
+*.ISO
+*.bin
+*.BIN
+*.cue
+*.CUE
+*.elf
+*.ELF
+*.irx
+*.IRX
+*.chd
+*.CHD
+*.cso
+*.CSO
+*.nrg
+*.NRG
+*.7z
+*.rar
+*.zip
+# Resultados locales
+reporte-local.json
+reports/
+output/
+build/
+cmake-build-*/
+*.log
+# Python y entornos
+__pycache__/
+*.py[cod]
+.venv/
+.vscode/
+.idea/
