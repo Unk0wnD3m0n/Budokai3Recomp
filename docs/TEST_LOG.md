@@ -169,3 +169,14 @@ Screenshot shows corrected-map log contains **5,860 [error]** records and **1,78
 ## 2026-11-16 — V0.3 — 5,860 unsupported instructions grouped by entry
 
 PowerShell grouping shared by user: `entry_00403fc0`: **3,897**; `entry_004217d0`: **1,773**; `entry_0042c020`: **190**. Sum **5,860**, the entire count of `unhandled-instruction` messages in the log. The top two entries account for **96.76%** of this specific error category. Hypothesis: synthetic-entry spans may include data; confirmed previously for a portion of `entry_0042c020`, but **unverified** for other two spans. Next: inspect `0x00403fc0` in Ghidra and CSV. No source patches or file deletions authorized/applied.
+
+## 2026-11-16 — V0.3 / Ghidra confirmed three overbroad synthetic entries
+
+User CSV/Ghidra screenshots:
+- `entry_00403fc0`: 0x00403FC0–0x00421720; 120,672 bytes, 3,897 errors; 2 disassembled instructions then undefined data.
+- `entry_004217d0`: 0x004217D0–0x0042C020; 43,088 bytes, 1,773 errors; 2 disassembled instructions, then undefined data and switch jump table at 0x004217E0.
+- `entry_0042c020`: 0x0042C020–0x0042D000; 4,064 bytes, 190 errors; 2 disassembled instructions then undefined bytes/string data.
+
+Upstream PS2Recomp `ExportPS2Functions.java` implementation `collectExecutableLabelRecords` extends synthetic entries up to next known boundary or memory block rather than stopping at Ghidra non-instruction data. These ranges could therefore include bytes that are not code. Not all purported instruction starts are independently verified as executable logic.
+
+Added local-only Python helper `scripts/v03_test_synthetic_ranges.py`, tested with synthetic CSV/TOML (original inputs unchanged, second run refuses overwrite). Generates isolated copies of map and config, experimentally caps exactly these **3** labels to 8 bytes and keeps 45,170 records. This experiment must not be treated as correct game semantics, and no proprietary content is committed. Await A/B run and error comparison before choosing permanent exporter change.
