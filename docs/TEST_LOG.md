@@ -216,3 +216,7 @@ User supplied x64 Native Tools Command Prompt screenshot: command `cl /nologo /s
 ## 2026-11-16 — V0.3 / second C++ x64 file compile: PASS
 
 User x64 Native Tools screenshot shows private `FUN_00106898_0x106898.cpp` exists (47,237 bytes). The MSVC `/c` compile completed with `CODIGO_DE_SALIDA=0`, without visible error messages. This is the second tested generated function following `FUN_00103018`. The second object file is expected from the invocation, but its presence/size has not yet been shown with `dir`. Next validate and expand to a modest batch of sources. Full binary linking, runtime and correctness not established.
+
+## 2026-11-16 — V0.3 / third MSVC generated-function compile PASS; automated sample helper added
+
+User screenshot: `FUN_00106898_0x106898.obj` exists and is 91,035 bytes, alongside prior `FUN_00103018_0x103018.obj` (110,706 bytes). Source `FUN_001077B8_0x1077b8.cpp` is 33,333 bytes and compiled under x64 MSVC `/std:c++20 /EHsc /arch:AVX2 /Od /c` with `CODIGO_DE_SALIDA=0`. Third .obj not yet shown in directory listing. To avoid manual function-by-function commands, added public *tool-only* script `scripts/v03_compile_sample.py`, which compiles 9 additional varied-size generated sources with per-file logs to ignored private output. This tests compilation only, not link, execution, or correctness. Pending user run. All proprietary game-derived code stays local.
