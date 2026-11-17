@@ -63,3 +63,20 @@ Según captura del usuario del diálogo `About SLES_533.46.elf`:
 - **Pendiente**: ejecutar Auto Analyze y comprobar número de funciones e instrucciones. El reconocimiento de la arquitectura no demuestra una recompilación funcional.
 
 No se almacenaron rutas privadas ni bytes comerciales.
+
+## 2026-11-16 — V0.2c / Ghidra Auto Analyze — PASS
+
+Resultado aportado mediante captura `About SLES_533.46.elf` en Ghidra 12.2 tras el análisis automático:
+
+- Procesador: `MIPS-R5900` (Language `r5900:LE:32:default (1.4)`), little-endian, 32 bits.
+- `Analyzed: true`.
+- Instrucciones identificadas: **544,078**.
+- Funciones identificadas: **7,328** (candidatas; no validadas individualmente).
+- Símbolos: **9,823**.
+- Datos definidos: **19,743**.
+- Bloques de memoria: 19.
+- ELF original image base: `0x00100000`.
+- SHA-256 del ejecutable coincide con registros anteriores.
+- Se omitieron rutas privadas y no se publicó ELF ni códigos extraídos.
+
+**Interpretación**: análisis estático realizado; el recuento no implica que todas las funciones sean válidas ni que el juego pueda recompilarse ya. Siguiente objetivo: exportar mapa TOML/CSV para PS2Recomp usando su script oficial, manteniendo la exportación local.
