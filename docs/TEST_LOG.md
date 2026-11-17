@@ -49,3 +49,17 @@ Validación mediante captura de PowerShell aportada por el usuario, sin acceso a
 - No se publicaron datos comerciales ni archivo ELF.
 
 **Resultado**: ya se puede empezar a inspeccionar el ejecutable en Ghidra localmente. No se han localizado todavía funciones del juego ni realizado recompilación nativa.
+
+## 2026-11-16 — V0.2c / importación en Ghidra — PASS parcial
+
+Según captura del usuario del diálogo `About SLES_533.46.elf`:
+
+- Ghidra **12.2**; importación del ELF correcta.
+- Language ID `r5900:LE:32:default (1.4)`; procesador **MIPS-R5900**, little-endian, 32 bits.
+- Extensión `ghidra-emotionengine-reloaded` seleccionada como fuente del lenguaje y procesador.
+- ELF original image base: `0x00100000`.
+- SHA-256 visible coincide con la extracción local y el análisis V0.1.
+- Estado **Analyzed: false**; 0 instrucciones, 1 función antes del análisis automático. Es normal al importar.
+- **Pendiente**: ejecutar Auto Analyze y comprobar número de funciones e instrucciones. El reconocimiento de la arquitectura no demuestra una recompilación funcional.
+
+No se almacenaron rutas privadas ni bytes comerciales.
