@@ -34,6 +34,16 @@ python .\scripts\inspect_elf_layout.py ".\DragonBall Z - Budokai 3 - Collector's
 
 Si tu ISO está en otra carpeta, utiliza su ruta. Esto genera únicamente metadatos de segmentos, secciones y permisos de memoria. No recompila ni ejecuta el juego. Detalles en [docs/V02_ANALYSIS.md](docs/V02_ANALYSIS.md).
 
+## V0.2b — Exportar tu propio ELF para análisis local
+
+Después de comprobar los segmentos del ELF, esta herramienta puede guardar una copia privada de `SLES_533.46` para estudiar funciones con Ghidra:
+
+```powershell
+python .\scripts\export_local_elf.py "RUTA_A_TU_ISO.iso" --output-dir output\private
+```
+
+**No publiques ese archivo ni lo subas a issues o repositorios.** Ver [Guía V0.2b](docs/V02B_GHIDRA.md).
+
 ## Fases
 
 Consulta [docs/ROADMAP.md](docs/ROADMAP.md): inspección de ISO → análisis del ELF → recompilación C++ → runtime → gráficos → controles/audio → primer combate → posible port jugable.
