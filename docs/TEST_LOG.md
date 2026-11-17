@@ -36,3 +36,16 @@ Resultado compartido mediante captura de PowerShell del usuario.
 ## Preparación V0.2b — Extracción privada de ELF
 
 Se publicó `scripts/export_local_elf.py` y tres pruebas sintéticas de exportación para generar el ELF **solo localmente**, sin sobrescribir un archivo existente. Pruebas locales aisladas del extractor: 3/3 PASS; falta probar la edición comercial en el equipo del usuario.
+
+## 2026-11-16 — V0.2b / extracción privada de ELF — PASS
+
+Validación mediante captura de PowerShell aportada por el usuario, sin acceso al binario.
+
+- **13/13 pruebas sintéticas** superadas en Windows.
+- Extracción local correcta desde ISO propia SLES-53346; primer intento usó una ruta incorrecta y falló sin modificar datos, segundo intento PASS.
+- Archivo producido solo localmente: `SLES_533.46.elf`.
+- Tamaño: **3,330,608 bytes**.
+- SHA-256: `74c892105a532309d33e473f82ed712ea671c85d6cf36b7078aada0f138510ca` (coincide con la medición de V0.1).
+- No se publicaron datos comerciales ni archivo ELF.
+
+**Resultado**: ya se puede empezar a inspeccionar el ejecutable en Ghidra localmente. No se han localizado todavía funciones del juego ni realizado recompilación nativa.
