@@ -147,3 +147,7 @@ PowerShell screenshot: `register_functions.cpp` size **31,561,961 bytes** and `s
 ## 2026-11-16 — V0.3 / Root-cause candidate: configured CSV does not exist
 
 User read-only TOML and filesystem check: `ELF EXISTE: True`, `CSV EXISTE: False`, `ghidra_output=C:\\Users\\Juan\\budokai3-functions.csv`. The actual CSV was previously confirmed in the desktop project's root. Therefore **the first recompilation did not have access to the intended CSV at the configured path**. Heuristic fallback is a strong explanation for ghost function `sub_0042C998`, but the exact input-map-loading behavior needs confirmation by a fresh log. Planned safe remediation: back up TOML, correct CSV path, set separate private output directory to avoid mixing generated files, revalidate, then rerun and inspect diagnostics. No game data or generated source should be published.
+
+## 2026-11-16 — V0.3 / re-run with corrected CSV path: MAP LOADED
+
+User supplied two matching log lines from the second private recompilation: at line **530**, `[info] ghidra-map - Loaded 45170 functions from Ghidra map`; at line **8180**, `Recompilation completed successfully`. This verifies the fixed TOML config now provides Ghidra map input and that PS2Recomp reached completion. Does **not** validate generated C++ correctness or runtime. New output count and ghost function status not yet received. Next: count .cpp files and unhandled_instruction messages in this fresh run, and check presence of sub_0042C998.
