@@ -80,3 +80,7 @@ Resultado aportado mediante captura `About SLES_533.46.elf` en Ghidra 12.2 tras 
 - Se omitieron rutas privadas y no se publicó ELF ni códigos extraídos.
 
 **Interpretación**: análisis estático realizado; el recuento no implica que todas las funciones sean válidas ni que el juego pueda recompilarse ya. Siguiente objetivo: exportar mapa TOML/CSV para PS2Recomp usando su script oficial, manteniendo la exportación local.
+
+## 2026-11-16 — V0.2d / exportación Ghidra PS2Recomp — REPORTADA, pendiente de comprobación
+
+El usuario confirma que obtuvo los dos archivos de salida TOML y CSV de `ExportPS2Functions.java`. No se han visto ni leído esos archivos ni la consola final del exportador. **Siguiente verificación local**: comprobar que ambos existen, tienen tamaño mayor que cero, que el CSV contiene registros y que el TOML incluye una sección `[general]`. No subir los archivos ni compartir rutas locales.
