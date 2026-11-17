@@ -212,3 +212,7 @@ User reports `CODIGO_DE_SALIDA=0` after running corrected x64 MSVC C++20 `cl /Zs
 ## 2026-11-16 — V0.3 / first generated x64 object code compiled: PASS
 
 User supplied x64 Native Tools Command Prompt screenshot: command `cl /nologo /std:c++20 /EHsc /arch:AVX2 /Od /c` on private generated `FUN_00103018_0x103018.cpp` succeeded, `CODIGO_DE_SALIDA=0`. The local `obj-test/FUN_00103018_0x103018.obj` exists, size **110,706 bytes**, dated 2026-11-16 21:46 (local time). This is machine-code object emission for one generated translation unit, **not** linking or validation of game behavior. Continue small-sample compile then investigate linking/runtime. The experimental 8-byte range caps still risk discarding valid code; preserve original game inputs and never commit proprietary output.
+
+## 2026-11-16 — V0.3 / second C++ x64 file compile: PASS
+
+User x64 Native Tools screenshot shows private `FUN_00106898_0x106898.cpp` exists (47,237 bytes). The MSVC `/c` compile completed with `CODIGO_DE_SALIDA=0`, without visible error messages. This is the second tested generated function following `FUN_00103018`. The second object file is expected from the invocation, but its presence/size has not yet been shown with `dir`. Next validate and expand to a modest batch of sources. Full binary linking, runtime and correctness not established.
