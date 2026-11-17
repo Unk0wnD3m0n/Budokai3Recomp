@@ -121,3 +121,9 @@ User ran read-only Python check of local TOML `[general].output`; output:
 - Remaining blocker: many `unhandled_instruction` messages in prior run, with suspected misclassification of ELF bytes/labels; inspect without executing or distributing commercial code.
 
 **Next:** read-only verify generated headers and file summary; keep generated C++ private and never commit it to GitHub.
+
+## 2026-11-16 — V0.3 triage / `sub_0042C998` — evidence of misclassified data
+
+Ghidra Listing screenshot at `0x0042C998` shows a **string data item**, symbol `s_amMc.c_0042c998`, directive `ds "amMc.c"`, preceded near `0x0042C980` by `"MC: sceMcInit error\\n"`, followed by untyped zero bytes from `0x0042C9A0`. These are not displayed as R5900 instructions.
+
+PS2Recomp had reported many `unhandled_instruction` diagnostics inside a generated function named `sub_0042C998`; likely the recompiler treats non-code data as code in at least this region. **Do not yet attribute it specifically to the Ghidra CSV**; `sub_...` names can arise from heuristics too. Verify whether the CSV contains a start at `0x0042C998` or a covering range before modifying maps. Keep ELF/TOML/CSV and generated C++ local.
