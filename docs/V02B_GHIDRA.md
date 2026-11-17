@@ -21,16 +21,20 @@ El total esperado con V0.2b es **13** pruebas.
 Desde PowerShell dentro del proyecto descargado:
 
 ```powershell
-python .\scripts\export_local_elf.py "C:\Users\Juan\Desktop\Budokai3Recomp-main 1\DragonBall Z - Budokai 3 - Collector's Edition (Europe) (En,Ja,Fr,De,Es,It).iso" --output-dir output\private
+python .\scripts\export_local_elf.py "RUTA_LOCAL_A_TU_ISO.iso" --output-dir output\private
 ```
 
 Si el nombre o ubicación no coincide, sustituye la ruta. La herramienta comprueba que el BOOT2 sea `SLES_533.46`, que el ELF tenga cabecera MIPS LE32 y **se niega a sobrescribir** el archivo extraído.
 
 Resultado esperado: archivo local `output/private/SLES_533.46.elf`, y hash SHA-256 coincidente con el reportado en V0.1. Git ignora `output/` y `*.elf`.
 
-## Paso 3 (posterior): Ghidra y mapa de funciones
+## Prueba real V0.2b — PASS
 
-1. Instalar Ghidra **solo desde su repositorio/página oficial**.
+El 16 de noviembre de 2026 se confirmó por captura: **13/13 tests** superados; `SLES_533.46.elf` extraído (3,330,608 bytes) y su hash SHA-256 coincidió con V0.1. Ningún binario del juego fue subido a GitHub.
+
+## Paso 3 — Ghidra y mapa de funciones
+
+1. Instalar la [versión oficial de Ghidra](https://github.com/NationalSecurityAgency/ghidra/releases) y un JDK compatible (el README oficial indica actualmente JDK 25 64 bits). No instalar archivos de fuentes no verificadas.
 2. Importar localmente `SLES_533.46.elf` en un proyecto privado.
 3. Confirmar arquitectura MIPS R5900, endianness y punto de entrada; evaluar procesador PS2 especializado si hace falta.
 4. Revisar el [flujo de Ghidra de PS2Recomp](https://github.com/ran-j/PS2Recomp/blob/main/ps2xAnalyzer/Readme.md) y sus exportadores.
