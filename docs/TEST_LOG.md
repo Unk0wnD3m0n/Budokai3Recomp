@@ -204,3 +204,7 @@ User read-only PowerShell screenshot confirms experimental generated file `FUN_0
 ## 2026-11-16 — V0.3 / first MSVC syntax-only compilation: C1083 missing Kernel header search path
 
 User screenshot: x64 Native Tools Command Prompt successfully ran `cl` for `FUN_00103018_0x103018.cpp` with `/Zs`; exit code 2; missing `Stubs/Unimplemented.h` included from `ps2xRuntime/include/ps2_stubs.h:9`. Confirmed upstream file exists in `ps2xRuntime/src/lib/Kernel/Stubs/Unimplemented.h`. Next add compiler include path `ps2xRuntime/src/lib/Kernel` and rerun. No generated code compiled yet, no executable created, game runtime not validated.
+
+## 2026-11-16 — V0.3 / first generated C++ syntax-only test PASS
+
+User reports `CODIGO_DE_SALIDA=0` after running corrected x64 MSVC C++20 `cl /Zs` on isolated experiment-generated `FUN_00103018_0x103018.cpp`. This establishes single translation-unit syntactic/semantic compilation checks passed with required includes. **No object or executable has been produced** by this syntax-only check; full build/link/runtime and game behavior remain unverified. Next isolated single-file `cl /c /Od /Fo` object emission test under private `output` folder, without game-derived artifacts in git.
