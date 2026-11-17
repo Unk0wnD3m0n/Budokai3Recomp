@@ -200,3 +200,7 @@ User screenshot at 0x001030C0 and 0x001030D4 confirms real memory-based indirect
 ## 2026-11-16 — V0.3 / generated JALR dispatch inspected; ready for MSVC syntax smoke test
 
 User read-only PowerShell screenshot confirms experimental generated file `FUN_00103018_0x103018.cpp` exists. It contains a call at first indirect site: `runtime->dispatchGuestBranch(rdram, ctx, jumpTarget, 0x1030C0u, 0x1030C8u, PS2Runtime::GuestBranchKind::IndirectCall, "JALR")` (screenshot line 394); a `jalr` comment is present at second site `0x1030D4` (line 412). Generated headers `ps2_recompiled_functions.h` and `ps2_recompiled_stubs.h` exist. Upstream `ps2xRuntime/include` provides runtime headers, `ps2xIOP/include` provides `ps2x/iop/iop_types.h`. Next: compile **one** generated CPP with `cl /std:c++20 /Zs` on user PC to check syntax and type resolution; no full build, no native app or gameplay validated. All game-derived artifacts remain private.
+
+## 2026-11-16 — V0.3 / first MSVC syntax-only compilation: C1083 missing Kernel header search path
+
+User screenshot: x64 Native Tools Command Prompt successfully ran `cl` for `FUN_00103018_0x103018.cpp` with `/Zs`; exit code 2; missing `Stubs/Unimplemented.h` included from `ps2xRuntime/include/ps2_stubs.h:9`. Confirmed upstream file exists in `ps2xRuntime/src/lib/Kernel/Stubs/Unimplemented.h`. Next add compiler include path `ps2xRuntime/src/lib/Kernel` and rerun. No generated code compiled yet, no executable created, game runtime not validated.
