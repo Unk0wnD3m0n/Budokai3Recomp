@@ -84,3 +84,15 @@ Resultado aportado mediante captura `About SLES_533.46.elf` en Ghidra 12.2 tras 
 ## 2026-11-16 — V0.2d / exportación Ghidra PS2Recomp — REPORTADA, pendiente de comprobación
 
 El usuario confirma que obtuvo los dos archivos de salida TOML y CSV de `ExportPS2Functions.java`. No se han visto ni leído esos archivos ni la consola final del exportador. **Siguiente verificación local**: comprobar que ambos existen, tienen tamaño mayor que cero, que el CSV contiene registros y que el TOML incluye una sección `[general]`. No subir los archivos ni compartir rutas locales.
+
+## 2026-11-16 — V0.2d / validación local de exportación — PASS (estructura)
+
+Verificado mediante captura de PowerShell del usuario:
+
+- `budokai3-functions.csv`: **1,831,275 bytes**; encabezado `Name,Start,End,Size`.
+- **45,170 registros CSV** con `Import-Csv`, incluyendo posibles etiquetas/puntos de entrada adicionales.
+- `budokai3-functions.toml`: **2,579 bytes**; sección `[general]` en línea 9.
+- Archivos guardados en raíz local del proyecto; no publicados en GitHub.
+- Los errores previos de `Import-Csv` se debían a una ruta diferente; comando corregido ejecutado correctamente.
+
+**Límite:** no se han validado todas las direcciones/límites ni las rutas `general.input` y `ghidra_output`. Los 45,170 registros no significan 45,170 funciones únicas válidas. La recompilación C++ no ha comenzado.
