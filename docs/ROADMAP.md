@@ -4,7 +4,7 @@
 
 | Versión | Objetivo | Condición de avance | Estado |
 |---|---|---|---|
-| V0.1 | Inspección ISO9660 / BOOT2 / ELF | Tests sintéticos pasan; ISO propia reconocida localmente | Código disponible; falta prueba real |
+| V0.1 | Inspección ISO9660 / BOOT2 / ELF | Tests sintéticos pasan; ISO propia reconocida localmente | PASS — ISO original reconocida localmente en Windows (2026-11-16) |
 | V0.2 | Mapa de funciones / Ghidra | Funciones, segmentos y dependencias documentadas | Pendiente |
 | V0.3 | Primera recompilación PS2Recomp | Generar C++ y compilar prueba con CMake/MSVC | Pendiente |
 | V0.4 | Runtime/arranque | Inicializar código de PS2 y registrar faltantes | Pendiente |
