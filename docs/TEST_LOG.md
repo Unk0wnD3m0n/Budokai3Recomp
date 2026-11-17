@@ -188,3 +188,7 @@ User screenshot of a local run using the **experimental copies** of CSV/TOML (th
 ## 2026-11-16 — V0.3 — A/B output verified, all warnings are control-flow
 
 New PowerShell screenshot shows **45,171 CPP files**, **zero empty CPP files**, and `register_functions.cpp` exists in the **experimental** private generated folder. All **1,786 warnings** are categorized `control-flow` (category grouped from log); no errors or `unhandled-instruction` in experimental log. User has not yet provided individual warning messages or branch-target context, so warning severity is **not yet classified**. Need sample lines and aggregation by text/function. The experimental 8-byte truncations remain *unvalidated as semantically correct* and a full native PC build/runtime does not exist yet.
+
+## 2026-11-16 — V0.3 / control-flow warnings examined
+
+User screenshot provided 10 sample `control-flow` warnings. They report unresolved `JR/JALR` sites with promotion of many fallback entries to support indirect execution. Example: `FUN_00103018` unresolved at `0x1030c0`, `0x1030d4`, promoted 135 fallback entries. Other sample functions report 29, 30, 51, 82, 92, 113, 115, 118 fallback entries. Frequency table shows warnings broadly distributed across functions (e.g., `caseD_0`: 4; multiple functions 2), unlike three pseudo-entry ranges explaining unsupported instructions. Need inspect representative cases and quantify fallback cost; zero translation errors cannot establish correct indirect control-flow. No generated proprietary code uploaded.
