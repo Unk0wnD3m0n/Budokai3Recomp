@@ -230,3 +230,11 @@ Next essential safety/correctness test: validate the three experimentally shorte
 ## 2026-11-16 — V0.3 / Ghidra Python audit silent; Java alternative supplied
 
 User reports pressing Run on `AuditSyntheticRanges.py` without visible output. This may be caused by Ghidra 12.2 changing default Python runtime to PyGhidra (former Jython scripts require `# @runtime Jython`, optional Jython extension), or hidden Ghidra Console; not yet confirmed on user's machine. Added native Java GhidraScript `scripts/ghidra/AuditSyntheticRanges.java` using documented Listing API methods, showing a popup summary and Console details. Reads only existing disassembled instructions, defined data and function entries after 8-byte experimental cuts. No changes to binary, CSV, Ghidra program or outputs. Await user to execute Java script.\n
+## 2026-11-16 — V0.3 / native Ghidra Java audit PASS for recognized instruction coverage
+
+Screenshot of popup from `AuditSyntheticRanges.java` run on user's Ghidra project:
+- `entry_00403fc0`: 2 recognized instructions in first 8 bytes; 0 after; 4,530 defined data items after; 0 function starts after.
+- `entry_004217d0`: 2 in first 8; 0 after; 2,570 defined data items after; 0 function starts after.
+- `entry_0042c020`: 2 in first 8; 0 after; 167 defined data items after; 0 function starts after.
+
+**Total** 0 instructions recognized after experimental cutoff, 7,267 defined data items after; defined-data counts refer to data units, NOT bytes. Corroborates earlier CSV overreach / A-B reductions, but Ghidra unrecognized code and branch references could remain, and eight-byte limits are still experimental. Validate XREFs into excluded areas before permanent generic exporter fix; no link/boot yet.
