@@ -161,3 +161,7 @@ User screenshot of local PowerShell checks confirms log line 530: 45170 function
 - Zero matches of unhandled_instruction in the fresh log.
 
 Assessment: the former missing CSV path strongly explains the false-code generation; this symptom is no longer present. Other severity diagnostics and compilation remain unchecked. No proprietary artifacts committed.
+
+## 2026-11-16 — CORRECTION: diagnostic-count spelling mistake
+
+Screenshot shows corrected-map log contains **5,860 [error]** records and **1,786 [warning]** records. First examples are **[error] unhandled-instruction** in `entry_00403fc0` near `0x00403ffc`; they include unsupported SPECIAL decoded patterns. Earlier report of zero `unhandled_instruction` matched the **wrong spelling** (underscore versus hyphen). It does **not** mean instruction errors were resolved. The 45,171 generated CPP files, loaded map and missing `0042C998` filename remain true; function correctness and C++ compilability do not follow. Need group errors by category/function, inspect Ghidra code/data boundaries, and make safe isolated changes. Preserve source and game binary unchanged.
