@@ -96,3 +96,15 @@ Verificado mediante captura de PowerShell del usuario:
 - Los errores previos de `Import-Csv` se debían a una ruta diferente; comando corregido ejecutado correctamente.
 
 **Límite:** no se han validado todas las direcciones/límites ni las rutas `general.input` y `ghidra_output`. Los 45,170 registros no significan 45,170 funciones únicas válidas. La recompilación C++ no ha comenzado.
+
+## 2026-11-16 — V0.3 / primera ejecución de PS2Recomp — FINALIZÓ CON DIAGNÓSTICOS
+
+Según captura de consola x64 Native Tools:
+
+- La ejecución del recompilador terminó e imprimió literalmente `Recompilation completed successfully`.
+- Aparecieron **múltiples errores** `[error] unhandled_instruction`, incluyendo `SPECIAL`, `COP0`, `REGIMM`, `FPU`.
+- Se repiten errores en `sub_0042C998`, direcciones cercanas a `0x0042CAxx`; se observó también advertencia de `control-flow` por saltos no resueltos.
+- **No se ha verificado** el directorio de salida ni cuántos archivos C++ existen; no se ha compilado código generado ni ejecutado Budokai 3 nativamente.
+- Se requiere distinguir instrucciones no soportadas de posibles **datos mal clasificados como código / entradas sintéticas** del mapa CSV de Ghidra.
+
+**Estado:** herramienta ejecutó la etapa de traducción hasta su mensaje de fin; recompilación funcional y calidad del C++ **pendientes de validación**. El mensaje de éxito no cancela los diagnósticos.
