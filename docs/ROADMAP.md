@@ -34,3 +34,4 @@
 - ✅ 12 funciones recompiladas superaron compilaciones MSVC C++20 x64: 3 individuales + prueba automática de 9/9 objetos no vacíos.
 - ⏳ Pendiente validar rangos sintéticos recortados (script de auditoría Ghidra en solo lectura), compilar generador de registro, enlazar con runtime y comprobar ejecución.
 - ⚠️ La generación sin errores en prueba A/B todavía no prueba arranque ni integridad del juego.
+- ✅ Auditoría Java Ghidra: 0 instrucciones reconocidas después de los recortes experimentales en los 3 rangos; 7.267 unidades de datos definidas en los tramos restantes; aún sin verificación completa de referencias/control de flujo.
