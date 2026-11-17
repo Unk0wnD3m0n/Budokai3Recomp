@@ -238,3 +238,7 @@ Screenshot of popup from `AuditSyntheticRanges.java` run on user's Ghidra projec
 - `entry_0042c020`: 2 in first 8; 0 after; 167 defined data items after; 0 function starts after.
 
 **Total** 0 instructions recognized after experimental cutoff, 7,267 defined data items after; defined-data counts refer to data units, NOT bytes. Corroborates earlier CSV overreach / A-B reductions, but Ghidra unrecognized code and branch references could remain, and eight-byte limits are still experimental. Validate XREFs into excluded areas before permanent generic exporter fix; no link/boot yet.
+
+## 2026-11-16 — V0.3 / XREF audit tool for three excluded tails
+
+Following successful read-only Ghidra Java defined-instruction audit (0 recognized instructions after eight-byte cap, 7,267 defined data units, 0 recognized function starts), added `scripts/ghidra/AuditSyntheticReferences.java`, a separate read-only Ghidra Java script. It enumerates reference destination addresses in the three omitted regions and classifies incoming XREFs by `ReferenceType.isFlow()`, `isData()`, and other, with counts and examples for first 10 flow refs. This provides an additional guardrail before deciding if trimming is safe. Does not establish indirect runtime targets or complete code coverage. Pending local execution.
