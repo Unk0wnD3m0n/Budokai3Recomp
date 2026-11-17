@@ -220,3 +220,9 @@ User x64 Native Tools screenshot shows private `FUN_00106898_0x106898.cpp` exist
 ## 2026-11-16 — V0.3 / third MSVC generated-function compile PASS; automated sample helper added
 
 User screenshot: `FUN_00106898_0x106898.obj` exists and is 91,035 bytes, alongside prior `FUN_00103018_0x103018.obj` (110,706 bytes). Source `FUN_001077B8_0x1077b8.cpp` is 33,333 bytes and compiled under x64 MSVC `/std:c++20 /EHsc /arch:AVX2 /Od /c` with `CODIGO_DE_SALIDA=0`. Third .obj not yet shown in directory listing. To avoid manual function-by-function commands, added public *tool-only* script `scripts/v03_compile_sample.py`, which compiles 9 additional varied-size generated sources with per-file logs to ignored private output. This tests compilation only, not link, execution, or correctness. Pending user run. All proprietary game-derived code stays local.
+
+## 2026-11-16 — V0.3 / nine-function automated MSVC x64 compilation: 9/9 PASS
+
+User screenshot of `scripts/v03_compile_sample.py` in x64 Native Tools confirms **9 of 9** additional varied-size generated C++ source files compiled to **nonzero** private COFF x64 .obj output with `cl=0` and per-file logs. Sizes in source message: [24,023, 13,627, 21,337, 68,181, 92,120, 77,636, 185,554, 151,767, 157,339] bytes, none zero. Combined with prior three individually compiled functions, **12 translation units** have successful compile results. This validates compilation on a small sample, not all 45,171 .cpp files, not link/runtime/playability.
+
+Next essential safety/correctness test: validate the three experimentally shortened ranges did not omit instructions. Added **read-only** Ghidra Jython script `scripts/ghidra/AuditSyntheticRanges.py` that counts already-disassembled instructions, defined data and function starts after the 8-byte truncation. Any count >0 may indicate coverage gaps; zero count does not prove original code absent. No private binary, CSV, generated code or objects committed.
